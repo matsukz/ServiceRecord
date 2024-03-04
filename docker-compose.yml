@@ -8,3 +8,26 @@ services:
     ports:
       - "8100:80"
     command: uvicorn main:app --reload --host 0.0.0.0 --port 80
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    container_name: FA_MySQL
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/scripts:/docker-entrypoint-initdb.d
+    ports:
+      - 3320:3306
+    env_file:
+      - ./mysql/.env
+    
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: FA_phpmyadmin
+    env_file:
+      - ./phpmyadmin/.env
+    ports:
+      - 8200:80
+    depends_on:
+      - mysql
