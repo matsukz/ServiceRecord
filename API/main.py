@@ -1,6 +1,9 @@
+#FastAPI関連
 from typing import Union
-
 from fastapi import FastAPI
+
+#MySQLに接続するスクリプト
+from Extend import database
 
 app = FastAPI()
 
