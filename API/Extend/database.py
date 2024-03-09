@@ -25,3 +25,5 @@ except Exception as e:
 
 Engine = create_engine(f"mysql+pymysql://{db_user}:{db_passwd}@{db_address}/{db_table}?charset=utf8")
 Base = declarative_base()
+Sessionmake = sessionmaker(bind=Engine)
+session = Sessionmake()
